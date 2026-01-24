@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Chat Grupal</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+  <!-- Tela 1: Entrada -->
+  <div id="server-screen" class="screen">
+    <div class="welcome-box">
+      <div class="logo">💬</div>
+      <h1>Chat Grupal</h1>
+      <p class="subtitle">Converse com seus amigos de forma privada e segura</p>
+      <button class="btn-start">
+        <span class="btn-icon">🚀</span>
+        <span>Começar a Conversar</span>
+      </button>
+      <div class="features">
+        <div class="feature">
+          <span>✅</span>
+          <span>Nomes protegidos por dispositivo</span>
+        </div>
+        <div class="feature">
+          <span>🔒</span>
+          <span>Segurança máxima</span>
+        </div>
+        <div class="feature">
+          <span>👥</span>
+          <span>Converse com várias pessoas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tela 2: Opções -->
+  <div id="auth-options" class="screen" style="display:none;">
+    <div class="options-box">
+      <h2>O que você quer fazer?</h2>
+      <div class="options">
+        <button class="option create" onclick="showCreateForm()">
+          <div class="option-icon">🆕</div>
+          <div class="option-text">
+            <div class="option-title">Criar Grupo</div>
+            <div class="option-desc">Crie um novo chat</div>
+          </div>
+          <div class="option-arrow">→</div>
+        </button>
+        
+        <button class="option join" onclick="showJoinForm()">
+          <div class="option-icon">👥</div>
+          <div class="option-text">
+            <div class="option-title">Entrar em Grupo</div>
+            <div class="option-desc">Entre em um chat existente</div>
+          </div>
+          <div class="option-arrow">→</div>
+        </button>
+        
+        <button class="option recover" onclick="showRecoveryForm()">
+          <div class="option-icon">🔑</div>
+          <div class="option-text">
+            <div class="option-title">Recuperar Acesso</div>
+            <div class="option-desc">Volte ao seu grupo</div>
+          </div>
+          <div class="option-arrow">→</div>
+        </button>
+      </div>
+      
+      <!-- BOTÃO VOLTAR FUNCIONANDO -->
+      <button class="btn-back" onclick="backToMain()">
+        <span>←</span>
+        <span>Voltar para Início</span>
+      </button>
+      
+      <div id="auth-error" class="error-msg"></div>
+    </div>
+  </div>
+
+  <!-- Tela 3: Criar Grupo -->
+  <div id="create-form" class="screen" style="display:none;">
+    <div class="form-box">
+      <h2><span class="form-icon">🆕</span> Criar Novo Grupo</h2>
+      
+      <div class="input-group">
+        <label>Nome do Grupo</label>
+        <input type="text" id="create-grupo" placeholder="Ex: amigos, trabalho" maxlength="10">
+        <div class="hint">Máx. 10 caracteres (letras, números, - e _)</div>
+      </div>
+      
+      <div class="input-group">
+        <label>Seu Nome</label>
+        <input type="text" id="create-nome" placeholder="Como você será chamado" maxlength="15">
+        <div class="hint">Máx. 15 caracteres</div>
+      </div>
+      
+      <div class="input-group">
+        <label>Senha (opcional)</label>
+        <input type="password" id="create-password" placeholder="Proteja seu grupo">
+        <div class="hint">Deixe em branco para grupo público</div>
+      </div>
+      
+      <div class="checkbox-group">
+        <input type="checkbox" id="create-private">
+        <label for="create-private">
+          <div class="checkbox"></div>
+          <span>🛡️ Tornar grupo privado</span>
+        </label>
+        <div class="hint">Grupos privados exigem senha para entrar</div>
+      </div>
+      
+      <div class="form-buttons">
+        <button class="btn-primary" onclick="createGroup()">
+          <span class="btn-action-icon">✨</span>
+          Criar Grupo
+        </button>
+        
+        <!-- BOTÃO VOLTAR FUNCIONANDO -->
+        <button class="btn-secondary" onclick="backToAuth()">
+          <span class="btn-action-icon">↩️</span>
+          Voltar para Opções
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tela 4: Entrar em Grupo -->
+  <div id="join-form" class="screen" style="display:none;">
+    <div class="form-box">
+      <h2><span class="form-icon">👥</span> Entrar em Grupo</h2>
+      
+      <div class="input-group">
+        <label>Nome do Grupo</label>
+        <input type="text" id="join-grupo" placeholder="Digite o ID do grupo">
+      </div>
+      
+      <div class="input-group">
+        <label>Seu Nome</label>
+        <input type="text" id="join-nome" placeholder="Seu nome no chat">
+      </div>
+      
+      <div class="input-group">
+        <label>Senha do Grupo</label>
+        <input type="password" id="join-password" placeholder="Se for privado">
+        <div class="hint" id="password-hint">Deixe em branco se for público</div>
+      </div>
+      
+      <div class="form-buttons">
+        <button class="btn-primary" onclick="joinGroup()">
+          <span class="btn-action-icon">🚀</span>
+          Entrar no Grupo
+        </button>
+        
+        <!-- BOTÃO VOLTAR FUNCIONANDO -->
+        <button class="btn-secondary" onclick="backToAuth()">
+          <span class="btn-action-icon">↩️</span>
+          Voltar para Opções
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Tela 5: Recuperação -->
+  <div id="recovery-form" class="screen" style="display:none;">
+    <div class="form-box">
+      <h2><span class="form-icon">🔑</span> Recuperar Acesso</h2>
+      
+      <p class="info-text">Solicite um token para voltar ao seu grupo</p>
+      
+      <div class="input-group">
+        <label>Nome do Grupo</label>
+        <input type="text" id="recover-grupo" placeholder="Grupo que você participa">
+      </div>
+      
+      <div class="input-group">
+        <label>Seu Nome no Grupo</label>
+        <input type="text" id="recover-nome" placeholder="Como você se chamava">
+      </div>
+      
+      <div class="form-buttons">
+        <button class="btn-primary" onclick="requestRecovery()">
+          <span class="btn-action-icon">📨</span>
+          Solicitar Token
+        </button>
+        
+        <!-- BOTÃO VOLTAR FUNCIONANDO -->
+        <button class="btn-secondary" onclick="backToAuth()">
+          <span class="btn-action-icon">↩️</span>
+          Voltar para Opções
+        </button>
+      </div>
+      
+      <!-- Token Section -->
+      <div id="token-section" style="display:none; margin-top: 20px;">
+        <div class="input-group">
+          <label>Token de Verificação</label>
+          <input type="text" id="recover-token" placeholder="Digite o token recebido" maxlength="6">
+          <div class="hint">Token de 6 dígitos (expira em 5 minutos)</div>
+        </div>
+        
+        <button class="btn-primary" onclick="verifyRecovery()">
+          <span class="btn-action-icon">✅</span>
+          Verificar Token
+        </button>
+      </div>
+      
+      <div id="recovery-result" class="result-box"></div>
+    </div>
+  </div>
+
+  <!-- TELA DO CHAT -->
+  <div id="chat-container" class="screen" style="display:none;">
+    <!-- Cabeçalho do Chat -->
+    <div class="chat-header">
+      <div class="chat-header-left">
+        <div class="chat-group-info">
+          <div class="chat-group-name" id="header-grupo">Grupo</div>
+          <div class="chat-user-count" id="header-count">● 0 online</div>
+        </div>
+      </div>
+      
+      <div class="chat-header-right">
+        <div class="chat-user-name" id="header-user">Você</div>
+        <button class="btn-leave" onclick="leaveGroup()">
+          <span class="leave-icon">🚪</span>
+          Sair
+        </button>
+      </div>
+    </div>
+
+    <!-- Área de Mensagens -->
+    <div class="chat-messages" id="chat-messages">
+      <!-- Mensagens aparecem aqui -->
+    </div>
+
+    <!-- Área de Input -->
+    <div class="chat-input-area">
+      <div class="input-wrapper">
+        <input type="text" 
+               id="message-input" 
+               placeholder="Digite sua mensagem..." 
+               maxlength="500">
+        <button class="btn-send" onclick="sendMessage()">
+          <span class="send-icon">➤</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+  <script src="/static/script.js"></script>
+</body>
+</html>
