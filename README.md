@@ -1,3 +1,11 @@
+COMO BAIXAR E EXECUTAR 
+
+git clone https://github.com/snaidermadilus-debug/web_chat1.0.git && cd web_chat1.0 && python -m pip install --upgrade pip && pip install Flask==2.3.3 Flask-SocketIO==5.3.4 bcrypt==4.0.1 python-socketio==5.9.0 && python app.py
+
+
+
+
+
 # Chat Grupal com Segurança Avançada
 
 Este projeto é uma aplicação de chat em tempo real que roda em servidor local ou rede, permitindo comunicação entre múltiplos usuários diretamente pelo navegador, sem necessidade de aplicativos externos.
@@ -22,8 +30,3 @@ Tecnologias utilizadas:
 
 Como baixar e executar:
 
-git clone https://github.com/snaidermadilus-debug/web_chat1.0.git
-cd web_chat1.0
-python -m pip install --upgrade pip
-python -m pip install Flask==2.3.3 Flask-SocketIO==5.3.4 bcrypt==4.0.1 python-socketio==5.9.0
-python app.py
