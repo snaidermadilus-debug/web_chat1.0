@@ -28,5 +28,5 @@ Tecnologias utilizadas:
 - HTML, CSS e JavaScript
 - Banco de dados local (SQLite)
 
-Como baixar e executar:
 
+Co-authored-by: Nome <email>
