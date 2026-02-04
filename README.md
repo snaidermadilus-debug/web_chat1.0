@@ -28,7 +28,7 @@ python app.py
 ```bash
 pkg install rust
 pip install bcrypt==4.0.1
-python app.py
+pip install passlib
 
 
 Tecnologias utilizadas:
