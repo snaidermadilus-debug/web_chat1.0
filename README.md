@@ -14,6 +14,17 @@ Funcionalidades principais:
 - Remoção automática de usuários inativos
 - Recuperação de acesso por token temporário
 
+git clone https://github.com/snaidermadilus-debug/web_chat1.0.git
+cd web_chat1.0
+
+python -m pip install --upgrade pip
+
+pip install Flask==2.3.3 Flask-SocketIO==5.3.4 bcrypt==3.2.2 python-socketio==5.9.0
+
+python app.py
+
+
+
 Tecnologias utilizadas:
 - Python
 - Flask
