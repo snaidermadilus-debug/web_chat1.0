@@ -27,10 +27,3 @@ git clone https://github.com/snaidermadilus-debug/web_chat1.0.git
 cd web_chat1.0
 
 python app.py
-
-Tecnologias utilizadas:
-- Python
-- Flask
-- Flask-SocketIO
-- HTML, CSS e JavaScript
-- Banco de dados local (SQLite)
